@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}学生信息管理系统{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+<div>
+	<form method="post" action="/add_course">
+    <div class="col-lg-8">
+			<div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True"  ></span>
+				  	添加课程信息
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>课程姓名</th>
+                                <th>课程编号</th>
+					            <th>课程教师姓名</th>
+					            <th>学分</th>
+					            <th>课程适合年级</th>
+                                <th>取消年份</th>
+					        </tr>
+                            <tr>
+					            <td><input type="text" name="course_name"></td>
+					            <td><input type="text" name ="course_id"></td>
+					            <td><input name="teacher"></td>
+					            <td><input name="credit"></td>
+                                <td><input name ="adapt_year"></td>
+                                <td><input name ="delete_year"></td>
+					        </tr>
+
+						</table>
+					</div>
+				</div>
+			</div>
+            <div><input value=添加 id="211163046" type="submit" class="btn btn-success btn-sm drop" onclick="alert('添加信息提交')" href="javascript:void(0);"></div>
+    </div>
+	</form>
+</div>
+{% endblock %}

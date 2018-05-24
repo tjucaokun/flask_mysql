@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}学生信息管理系统{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+<div>
+	<form method="post" action="/add_stu">
+    <div class="col-lg-8">
+			<div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True"  ></span>
+                    该课程成绩分布
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>满分人数</th>
+                                <th>90-99</th>
+					            <th>80-89</th>
+					            <th>70-79</th>
+					            <th>60-69</th>
+                                <th>60以下</th>
+                                <th>avg</th>
+					        </tr>
+                            <tr>
+					            <td>{{s}}</td>
+					            <td>{{a}}</td>
+					            <td>{{b}}</td>
+					            <td>{{c}}</td>
+                                <td>{{d}}</td>
+                                <td>{{e}}</td>
+                                <td>{{num}}</td>
+					        </tr>
+
+						</table>
+					</div>
+				</div>
+			</div>
+            <div></div>
+    </div>
+	</form>
+</div>
+{% endblock %}

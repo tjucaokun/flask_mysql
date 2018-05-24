@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}学生信息管理系统{% endblock %}
+
+{% block page_content %}
+{% if name %}
+<div class="page-header">
+    <h1>Hello {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+{%endif%}
+<div>
+    <img src="static/3.jpg" width="1200px" >
+</div>
+{% endblock %}

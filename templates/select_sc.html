@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}学生信息管理系统{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+     <h1>Hello {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+<div>
+	<form action="/select_sc" method="post">
+       <div class="col-lg-8">
+			<div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True"  ></span>
+				  	请输入查找条件(输入一条信息即可)
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>姓名</th>
+					            <th>课程名</th>
+					        </tr>
+                            <tr>
+					            <td><input type="text" name="sname"></td>
+					            <td><input name = "cname"></td>
+					        </tr>
+
+						</table>
+					</div>
+				</div>
+			</div>
+            <div><input value="查找"  type="submit" class="btn btn-success btn-sm drop"  href="javascript:void(0);"></input></div>
+		     <p></p>
+	   </div>
+	</form>
+</div>
+<div>
+      <div class="col-lg-8">
+			 <div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True" ></span>
+				  	查询结果
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>学生姓名</th>
+								<th>学生编号</th>
+                                <th>课程名称</th>
+					            <th>选课年份</th>
+					            <th>成绩</th>
+								<th>操作</th>
+					        </tr>
+								{% for grade in gradescs %}
+                            <tr>
+								<td>{{grade.studentname}}</td>
+					            <td>{{grade.studentid}}</td>
+					            <td>{{grade.coursename}}</td>
+					            <td>{{grade.syear}}</td>
+								<td>{{grade.grade}}</td>
+
+								<td><a value=选课 id="00" type="submit" class="btn btn-success btn-sm drop" onclick="alert('请确定您的删除操作')" href="/delete_sc " name="delete" >删除</a></td>
+					        </tr>
+								{% endfor %}
+						</table>
+					</div>
+				</div>
+			 </div>
+	  </div>
+</div>
+{% endblock %}

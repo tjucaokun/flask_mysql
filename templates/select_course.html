@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}学生信息管理系统{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+     <h1>Hello {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+<div>
+	<form action="/select_course" method="post">
+       <div class="col-lg-8">
+			<div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True"  ></span>
+				  	请输入查找条件(输入一条信息即可)
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>课程名</th>
+					            <th>课程编号</th>
+					        </tr>
+                            <tr>
+					            <td><input type="text" name="name"></td>
+					            <td><input name = "id"></td>
+					        </tr>
+
+						</table>
+					</div>
+				</div>
+			</div>
+            <div><input value="查找"  type="submit" class="btn btn-success btn-sm drop"  href="javascript:void(0);"></input>
+
+		     <p></p>
+	   </div>
+	</form>
+</div>
+<div>
+      <div class="col-lg-8">
+			 <div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True" ></span>
+				  	查询结果
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>课程姓名</th>
+                                <th>课程编号</th>
+					            <th>课程教师姓名</th>
+					            <th>学分</th>
+					            <th>课程适合年级</th>
+                                <th>取消年份</th>
+								<th>操作</th>
+					        </tr>
+								{% for course in courses %}
+                            <tr>
+								<td>{{course.name}}</td>
+					            <td>{{course.id}}</td>
+					            <td>{{course.tea_name}}</td>
+					            <td>{{course.credit}}</td>
+                                <td>{{course.adapt_grade}}</td>
+                                <td>{{course.delete_year}}</td>
+
+								<form method="post" action="/course_grade"><td><button value={{course.id}} id="00" type="submit" class="btn btn-success btn-sm drop" onclick="alert('页面转跳中')" href="/course_grade" name="courseid" >查看成绩统计</button></td></form>
+					        </tr>
+								{% endfor %}
+						</table>
+					</div>
+				</div>
+			 </div>
+	  </div>
+</div>
+{% endblock %}

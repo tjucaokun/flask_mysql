@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}学生信息管理系统{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+<div>
+	<form action="/delete_sc" method="post">
+       <div class="col-lg-8">
+			<div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True"  ></span>
+				  	请输入删除条件（缺一不可）
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>学生学号</th>
+					            <th>课程编号</th>
+					        </tr>
+                            <tr>
+					            <td><input name="studentname"></td>
+					            <td><input name = "coursename"></td>
+					        </tr>
+
+						</table>
+					</div>
+				</div>
+			</div>
+            <div><input value="删除"  type="submit" class="btn btn-success btn-sm drop"  href="javascript:void(0);"></input></div>
+		     <p></p>
+	   </div>
+	</form>
+</div>
+{% endblock %}

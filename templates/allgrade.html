@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}学生信息管理系统{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+<div>
+    <div class="col-lg-8">
+			<div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True"  ></span>
+                    各班级加权成绩分布
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>一班</th>
+                                <th>二班</th>
+					            <th>三班</th>
+					            <th>四班</th>
+					        </tr>
+                            <tr>
+					            <td>{{class1}}</td>
+					            <td>{{class2}}</td>
+					            <td>{{class3}}</td>
+					            <td>{{class4}}</td>
+					        </tr>
+
+						</table>
+					</div>
+				</div>
+			</div>
+            <div></div>
+    </div>
+</div>
+
+<div>
+	<form action="/allgrade" method="post">
+       <div class="col-lg-8">
+			<div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True"  ></span>
+				  	请输入查找学生条件(输入一条信息即可)
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>学生姓名</th>
+					            <th>学生学号</th>
+					        </tr>
+                            <tr>
+					            <td><input type="text" name="name"></td>
+					            <td><input name = "id"></td>
+					        </tr>
+
+						</table>
+					</div>
+				</div>
+			</div>
+            <div><input value="查找"  type="submit" class="btn btn-success btn-sm drop"  href="javascript:void(0);"></input></div>
+		     <p></p>
+	   </div>
+	</form>
+</div>
+<div>
+      <div class="col-lg-8">
+			 <div class="panel panel-default" style="width:150%">
+				<div class="panel-heading">
+				  	<span class="glyphicon glyphicon-th-large" aria-hidden="True" ></span>
+				  	查询结果
+                </div>
+				<div class="panel-body">
+				    <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr>
+					            <th>学生姓名</th>
+                                <th>学生编号</th>
+                                <th>加权成绩</th>
+					        </tr>
+								{% for student in students %}
+                            <tr>
+								<td>{{student.studentname}}</td>
+					            <td>{{student.studentid}}</td>
+                                <td>{{student.grade}}</td>
+
+					        </tr>
+								{% endfor %}
+						</table>
+					</div>
+				</div>
+			 </div>
+	  </div>
+</div>
+{% endblock %}
